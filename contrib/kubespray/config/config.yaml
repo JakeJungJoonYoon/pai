@@ -1,6 +1,6 @@
-user: forexample
-password: forexample
-docker_image_tag: v1.8.1
+user: qraft
+password: 12wqasxz
+docker_image_tag: v1.8.0
 
 # Optional
 
@@ -50,7 +50,7 @@ docker_image_tag: v1.8.1
 ########################################################################################
 # docker_data_root: /mnt/docker
 # docker_config_file_path: /etc/docker/daemon.json
-# docker_iptables_enabled: false
+docker_iptables_enabled: true
 
 ## An obvious use case is allowing insecure-registry access to self hosted registries.
 ## Can be ipaddress and domain_name.
@@ -78,7 +78,7 @@ docker_image_tag: v1.8.1
 # kubeadm_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kubeadm_version }}/bin/linux/{{ image_arch }}/kubeadm"
 # hyperkube_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version }}/bin/linux/{{ image_arch }}/hyperkube"
 
-# openpai_kube_network_plugin: calico
+openpai_kube_network_plugin: cilium
 
 # openpai_kubespray_extra_var:
 #   key: value
