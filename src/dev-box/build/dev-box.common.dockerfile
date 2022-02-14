@@ -1,10 +1,10 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 RUN apt-get -y update && \
-    apt-get -y install \
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install \
       nano \
       vim \
       joe \
@@ -37,14 +37,18 @@ RUN apt-get -y update && \
       bash-completion \
       inotify-tools \
       rsync \
-      realpath \
+    #   realpath \
       nfs-common \
-      net-tools && \
-    mkdir -p /cluster-configuration &&\
+      net-tools
+
+RUN pip install -U pip &&\
+    pip3 install -U pip
+
+RUN mkdir -p /cluster-configuration &&\
     git clone https://github.com/Microsoft/pai.git &&\
-    pip install bcrypt==3.1.7 dnspython==1.16.0 python-etcd docker kubernetes==12.0.0 paramiko==2.6.0 cryptography==3.2 cachetools==3.1.1 GitPython==2.1.15 jsonschema attrs dicttoxml beautifulsoup4 future setuptools==44.1.0 &&\
-    python -m easy_install --upgrade pyOpenSSL && \
-    pip3 install kubernetes==12.0.0 jinja2
+    pip2 install --ignore-installed bcrypt dnspython python-etcd docker kubernetes paramiko cryptography cachetools GitPython jsonschema attrs dicttoxml beautifulsoup4 future setuptools pyopenssl &&\
+    # python -m easy_install --upgrade pyOpenSSL && \
+    pip3 install kubernetes jinja2
 
 WORKDIR /tmp
 
